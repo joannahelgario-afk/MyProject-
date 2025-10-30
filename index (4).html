@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Joannah Elgario | Portfolio</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #f3e8ff, #ede9fe);
+      color: #000; /* black text in light mode */
+      margin: 0;
+      padding: 0;
+      transition: background 0.4s, color 0.4s;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(to right, #a855f7, #7e22ce);
+      color: white;
+      padding: 50px 0 35px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3.2em;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: white; /* main header always white */
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    header .signature-tag {
+      font-style: italic;
+      font-size: 1.1em;
+      color: #f3e8ff;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 20px;
+      border-radius: 25px;
+      margin-top: 15px;
+      display: inline-block;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: #7e22ce;
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+      transition: background 0.3s ease;
+      z-index: 999;
+    }
+
+    .theme-toggle:hover {
+      background: #a855f7;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: #fff;
+      border-bottom: 3px solid #a855f7;
+      padding: 15px 0;
+      gap: 25px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      position: relative;
+      font-weight: 600;
+      font-size: 1.1em;
+      color: #7e22ce;
+      text-decoration: none;
+      padding-bottom: 5px;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      background-color: #a855f7;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #9333ea;
+    }
+
+    /* Sections */
+    section {
+      display: none;
+      padding: 60px 20px;
+      text-align: center;
+      max-width: 1200px;
+      margin: auto;
+      animation: fadeIn 0.5s ease-in-out;
+      color: inherit; /* text follows body color */
+    }
+
+    section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    /* Main titles */
+    header h1 {
+      color: white; /* always white */
+    }
+
+    /* Section titles */
+    .section-title {
+      font-size: 2.5em;
+      margin-bottom: 25px;
+      color: #000; /* black in light mode */
+      transition: color 0.4s;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      color: inherit; /* follow body text */
+      max-width: 900px;
+      margin: 25px auto;
+      line-height: 1.6;
+    }
+
+    h3 {
+      color: #6b21a8;
+      font-size: 1.3em;
+      font-weight: 400;
+      max-width: 900px;
+      margin: 25px auto;
+    }
+
+    /* Home Image (Circle with border) */
+    #home .image-frame {
+      border-radius: 50%;
+      padding: 5px;
+      background: #7e22ce; /* border color */
+      display: inline-block;
+    }
+
+    #home .image-frame img {
+      border-radius: 50%;
+      width: 400px;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Moments (Rectangular frame with padding) */
+    #moments .image-container {
+      display: inline-block;
+      margin: 15px;
+    }
+
+    #moments .image-frame {
+      padding: 5px;
+      background: #7e22ce; /* frame color */
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    #moments .image-frame img {
+      border-radius: 15px;
+      width: 380px;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Outputs (Vertical, Larger, No Border) */
+    #outputs .image-container {
+      display: block;
+    }
+
+    #outputs .image-frame {
+      background: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 40px 0;
+    }
+
+    #outputs .image-frame img {
+      width: 90%;
+      max-width: 800px;
+      border-radius: 15px;
+    }
+
+    iframe {
+      border: none;
+      margin: 25px;
+      width: 90%;
+      max-width: 850px;
+      height: 480px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .video-caption {
+      font-size: 16px;
+      color: inherit;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      font-size: 17px;
+      color: inherit;
+    }
+
+    /* Contacts Horizontal */
+    #contacts .contact-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 50px;
+      margin: 30px auto;
+    }
+
+    #contacts .contact-container div {
+      text-align: center;
+      flex: 0 0 auto;
+    }
+
+    /* Comments */
+    .comment-box {
+      width: 100%;
+      max-width: 700px;
+      margin: 30px auto;
+      text-align: left;
+    }
+
+    .comments {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 15px;
+      height: 300px;
+      overflow-y: auto;
+      background: #fff;
+      font-size: 16px;
+      color: inherit;
+    }
+
+    .input-area {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+      color: inherit;
+    }
+
+    .send-btn {
+      background: #9333ea;
+      border: none;
+      color: #fff;
+      padding: 0 20px;
+      margin-left: 5px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 16px;
+    }
+
+    .send-btn:hover {
+      background: #7e22ce;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 15px;
+      color: #777;
+      background: #f3e8ff;
+      margin-top: 40px;
+    }
+
+    /* Dark Mode */
+    body.dark {
+      background: #1a1a1a;
+      color: #fff; /* all text white in dark mode */
+    }
+
+    body.dark .section-title {
+      color: #fff; /* white in dark mode */
+    }
+
+    body.dark header {
+      background: linear-gradient(to right, #5b21b6, #4c1d95);
+    }
+
+    body.dark nav {
+      background: #2a2a2a;
+      border-bottom: 3px solid #5b21b6;
+    }
+
+    body.dark nav a {
+      color: #c084fc;
+    }
+
+    body.dark h3 {
+      color: #d8b4fe;
+    }
+
+    body.dark figcaption,
+    body.dark .video-caption {
+      color: #ccc;
+    }
+
+    body.dark footer {
+      background: #2a2a2a;
+      color: #aaa;
+    }
+
+    /* Light Mode Captions */
+    .video-caption {
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+
+  <header>
+    <h1>My Portfolio</h1>
+    <div class="signature-tag">By: Joannah Marie B. Elgario | BSIT 2A</div>
+  </header>
+
+  <nav>
+    <a href="#" class="active" onclick="showSection('home', this)">Home</a>
+    <a href="#" onclick="showSection('moments', this)">Best Moments</a>
+    <a href="#" onclick="showSection('videos', this)">Videos</a>
+    <a href="#" onclick="showSection('outputs', this)">Outputs</a>
+    <a href="#" onclick="showSection('contacts', this)">Contacts</a>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home" class="active">
+    <div class="image-container">
+      <div class="image-frame">
+        <img src="Messenger_creation_eb652ca3-95ac-4169-ba82-69fab9347d96_072523.jpeg" alt="Profile Picture">
+      </div>
+    </div>
+    <h2><b>Joannah Marie B. Elgario</b>, an 18-year-old student driven by a deep passion for technology, innovation, and creativity. I am continuously exploring opportunities to grow and develop my skills in the field of Information Technology, striving to combine technical expertise with creative solutions that make a meaningful impact.</h2>
+  </section>
+
+  <!-- MOMENTS -->
+  <section id="moments">
+    <h1 class="section-title">Capturing the Best Moments of My Life</h1>
+    <div class="image-container">
+      <div class="image-frame">
+        <img src="1756295216445.jpg" alt="Recognition Day">
+        <figcaption>A proud moment with my father on recognition day.</figcaption>
+      </div>
+    </div>
+    <div class="image-container">
+      <div class="image-frame">
+        <img src="received_672008587914175_080626.jpeg" alt="New Year Celebration">
+        <figcaption>Welcoming the New Year with smiles.</figcaption>
+      </div>
+    </div>
+    <div class="image-container">
+      <div class="image-frame">
+        <img src="Messenger_creation_d0cc8477-c83d-49ce-8be4-3103b615692f_072537.jpeg" alt="Adventure">
+        <figcaption>Finding joy in little adventures.</figcaption>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+<section id="videos">
+  <h1 class="section-title">Video Tutorials</h1>
+  <div>
+    <iframe src="https://www.youtube.com/embed/jQ1sfKIl50E" allowfullscreen></iframe>
+    <div class="video-caption">Figma Tutorial</div>
+  </div>
+  <div>
+    <iframe src="https://www.youtube.com/embed/61mkx_OV61s" allowfullscreen></iframe>
+    <div class="video-caption">Photoshop Tutorial</div>
+  </div>
+  <div>
+    <iframe src="https://www.youtube.com/embed/zd5_MN-6kqs" allowfullscreen></iframe>
+    <div class="video-caption">WordPress Tutorial</div>
+  </div>
+</section>
+
+  <!-- OUTPUTS -->
+  <section id="outputs">
+    <h1 class="section-title">My Sample Outputs</h1>
+    <div class="image-container">
+      <div class="image-frame">
+        <img src="ELGARIO-Activity4.jpg" alt="T-shirt Layout">
+        <figcaption>T-shirt Layout — <a href="https://drive.google.com/file/d/1sq2DVrGzXf5FYTXWzjxKo8T5DJyxRSfY/view?usp=drivesdk" target="_blank">View</a></figcaption>
+      </div>
+    </div>
+
+    <div class="image-container">
+      <div class="image-frame">
+        <img src="IMG_20251020_155835.jpg" alt="E-commerce Website">
+        <figcaption>E-commerce Website — <a href="https://www.figma.com/proto/XJALd5IniS3PG2gmdIvvLV/Untitled?node-id=0-1&t=yMGcb5VHfe8wEwd5-1" target="_blank">View</a></figcaption>
+      </div>
+    </div>
+
+    <h3>Other Outputs:</h3>
+    <p>📄 Canva Portfolio — <a href="https://www.canva.com/design/DAGwxrtAfSY/5Lm7Vi6iWECfbK46ONVeoA/edit" target="_blank">Click Here</a></p>
+    <p>💻 Figma Portfolio — <a href="https://www.figma.com/design/QMJL8MPzg78IhREuwz4pK9/Untitled" target="_blank">Click Here</a></p>
+    <p>⚙ Helpful AI Tools — <a href="https://www.canva.com/design/DAGyBmDp1BY/OHrkeoAW4mAiW2_c7cLEPw/edit" target="_blank">Click Here</a></p>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="contacts">
+    <h1 class="section-title">Contact Information</h1>
+    <div class="contact-container">
+      <div>
+        <img src="telephone.png" width="90" alt="Telephone">
+        <figcaption><b>Telephone:</b> 09949058751</figcaption>
+      </div>
+      <div>
+        <img src="Facebook.png" width="90" alt="Facebook">
+        <figcaption><b>Facebook:</b> <a href="https://www.facebook.com/profile.php?id=61566240590125" target="_blank">Joannah Elgario</a></figcaption>
+      </div>
+      <div>
+        <img src="Instagram.png" width="90" alt="Instagram">
+        <figcaption><b>Instagram:</b> <a href="https://www.instagram.com/joannahh_07" target="_blank">@joannahh_07</a></figcaption>
+      </div>
+      <div>
+        <img src="TikTok.png" width="90" alt="TikTok">
+        <figcaption><b>TikTok:</b> <a href="https://www.tiktok.com/@wannah08" target="_blank">@wannah08</a></figcaption>
+      </div>
+      <div>
+        <img src="gmail.png" width="90" alt="Email">
+        <figcaption><b>Email:</b> joannahelgario@gmail.com</figcaption>
+      </div>
+    </div>
+
+    <h1 class="section-title">Your Feedback Matters</h1>
+    <div class="comment-box">
+      <div class="comments" id="comments"></div>
+      <div class="input-area">
+        <input type="text" id="commentInput" placeholder="Write a comment...">
+        <button class="send-btn" id="sendBtn">Send</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function showSection(id, link) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    const comments = document.getElementById('comments');
+    const input = document.getElementById('commentInput');
+    const btn = document.getElementById('sendBtn');
+    btn.onclick = () => {
+      if (input.value.trim() === '') return;
+      const p = document.createElement('p');
+      p.textContent = input.value;
+      comments.appendChild(p);
+      input.value = '';
+      comments.scrollTop = comments.scrollHeight;
+    };
+
+    const toggle = document.getElementById('themeToggle');
+    toggle.onclick = () => {
+      document.body.classList.toggle('dark');
+      toggle.textContent = document.body.classList.contains('dark')
+        ? '☀️ Light Mode'
+        : '🌙 Dark Mode';
+    };
+  </script>
+</body>
+</html>
